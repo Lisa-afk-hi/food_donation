@@ -1,0 +1,237 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - HopeBites</title>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel="stylesheet" href="{% static 'css/aboutUs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/donate.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    {% comment %} <section id="heroSection">
+        <div id="heroImage">
+            <div id="col1">
+                <div id="image1">
+                    
+                </div>
+                <div id="image2"></div>
+            </div>
+            <div id="col2">
+                <div id="image3"></div>
+                <div id="image4"></div>
+            </div>
+        </div>
+        <div id="heroContent">
+            <h1>Saving <span>food</span>, Sharing <span>love</span>. </h1>
+            <h2>Because good food should feed people, not landfills</h2>
+            <button><a href="{% url "join" %}"> Join the cause</a></button>
+        </div>
+    </section> {% endcomment %}
+
+    <header class="donate-header">
+        <h1>Saving <span>food</span>, Sharing <span>love</span>. </h1>
+        <h1>Because good food should feed people, not landfills</h1>
+        <button class="donate-button"><a href="{% url "join" %}"> Join the cause</a></button>
+    </header>
+
+    <section id="problem">
+         <!-- problem -->
+        <div id="problemText">
+            <h1>Problem</h1>
+            <p>Food wastage remains a critical issue, not because of a lack of awareness, but because of the way surplus food is managed. While many organizations work to combat hunger, the majority rely on monetary donations rather than directly rescuing and redistributing fresh food that would otherwise be discarded. As a result, perfectly edible fruits, vegetables, and meals from restaurants, grocery stores, and events still end up in landfills instead of reaching those in need. Our team recognized this gap—there are systems in place to address food insecurity, but not enough focus on immediate food recovery. That’s where HopeBites steps in, bridging the gap by ensuring that excess food is saved at the right time and delivered to the right people, minimizing waste and maximizing impact.
+            </p>
+        </div>
+        <div class="timeline">
+            <div class="container left-container">
+                <h1>.</h1>
+                <div class="text-box">
+                    <h2></h2>
+                    <small>2018</small>
+                    <p> Approximately 30% of all food produced globally is lost or wasted annually, <strong>amounting to about 1.3 billion tonnes.</strong></p>
+                    <span class="left-container-arrow"></span>
+                </div>
+            </div>
+            <div class="container right-container">
+                <h1>.</h1>
+                <div class="text-box">
+                    <h2></h2>
+                    <small>2021</small>
+                    <p>  Approximately 931 million tonnes of food waste were generated globally,<strong>equating to 17% of total food available to consumers</strong></p>
+                    <span class="right-container-arrow"></span>
+                </div>
+            </div>
+            <div class="container left-container" id="third">
+                <h1>.</h1>
+                <div class="text-box">
+                    <h2></h2>
+                    <small>2022</small>
+                    <p> Approximately 
+                        1.05 billion tonnes of food waste were generated globally,<strong>equating to 19% of total food available to consumers.</strong></p>
+                        <span class="left-container-arrow"></span>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <!-- solution -->
+    <section id="solution">
+        <div id="communityImage">
+            <img src="{% static 'images/community.png' %}" alt="">
+        </div>
+        <div id="solutionText">
+            <h1>Our Solution</h1>
+            <p>At HopeBites, we believe that the best way to fight food waste is through direct action. Instead of focusing on monetary donations, we have built a platform that connects food donors—such as restaurants, grocery stores, and individuals—with those who need it the most. Our website serves as a bridge, making food donation simple, accessible, and efficient. By rescuing fresh, edible food before it gets discarded, we ensure it reaches shelters, low-income families, and communities facing food insecurity. Beyond just collection and distribution, we are also committed to spreading awareness about the scale of food waste and how small changes in handling surplus food can lead to a significant impact. Through collaboration, awareness, and immediate action, we are not just reducing food waste—we are turning excess into opportunity.
+            </p>
+        </div>
+    </section id="mission">
+    <!-- Our Vision and Mission -->
+     <h1 id="missionHeading">Our Vision and Mission </h1>
+        <div id="missionContainer">
+            <div class="visionMission" id="miss1">
+                <img src="{% static 'images/leadership.png' %}" alt="">
+                <h1>Create a Community-Driven Platform </h1>
+                <p>A space where individuals, businesses, and organizations can come together to reduce food waste and fight hunger</p>
+            </div>
+            <div class="visionMission" id="miss2">
+                <img src="{% static 'images/objective.png' %}" alt="">
+                <h1>Enable Easy Food Donations</h1>
+                <p>Connect those with surplus food—restaurants, grocery stores, and individuals—with those who need it, ensuring no edible food goes to waste.
+                </p>
+            </div>
+            <div class="visionMission" id="miss3">
+                <img src="{% static 'images/mission-statement (1).png' %}" alt="">
+                <h1> Encourage Asking for Help Without Hesitation </h1>
+                <p> Provide a judgment-free platform where people in need can request food support without stigma.</p>
+            </div>
+            <div class="visionMission" id="miss4">
+                <img src="{% static 'images/mission-statement.png' %}" alt="">
+                <h1>Empower People to Help Each Othe</h1>
+                <p>Allow communities to take charge by offering help directly, whether by donating food, volunteering, or raising awareness.
+                </p>
+            </div>
+        </div>
+    <!-- Meet the Team Part -->
+    <section id="meetTeam">
+        <h1>Meet The Team</h1>
+        <div id="team">
+            <div id="mem1" class="card">
+                <img src="{% static 'images/team-g-1.jpg' %}" alt="">
+                <h1>Trusha Singh</h1>
+                <p>“We don’t just donate food; we share kindness and a sense of belonging.”
+                    </p>
+                    <div class="contactMem">
+                        <a href=""><i class="fi fi-rr-phone-call one" ></i></a>
+                        <button class="joinbutton"><a href="{% url "join" %}">Join the cause</a></button>
+                    </div>
+            </div>
+            <div id="mem2" class="card">
+                <img src="{% static 'images/team-g-2.jpg' %}" alt="">
+                <h1>Saloni Verma</h1>
+                <p>
+                    "Food should fill stomachs, not landfills. We turn surplus into service."
+                </p>
+                <div class="contactMem">
+                    <a href=""><i class="fi fi-rr-phone-call one" ></i></a>
+                    <button class="joinbutton"><a href="{% url "join" %}">Join the cause</a></button>
+                </div>
+            </div>
+            <div id="mem3" class="card">
+                <img src="{% static 'images/team-b-1.webp' %}" alt="">
+                <h1>Gautam Sharma</h1>
+                <p>“Hunger is not about scarcity—it’s about access.”
+                </p>
+                <div class="contactMem">
+                    <a href=""><i class="fi fi-rr-phone-call one" ></i></a>
+                    <button class="joinbutton"><a href="{% url "join" %}">Join the cause</a></button>
+                </div>
+            </div>
+            <div id="mem4" class="card">
+                <img src="{% static 'images/team-b-2.webp' %}" alt="">
+                <h1>Hari Patel</h1>
+                <p>“We don’t just collect food—we collect opportunities to make a difference.”
+                </p>
+                <div class="contactMem">
+                    <a href=""><i class="fi fi-rr-phone-call one" ></i></a>
+                    <button class="joinbutton"><a href="{% url "join" %}">Join the cause</a></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQs -->
+    <section id="faqs">
+        <h2 id="sectionHeading">Frequently Asked Questions</h2>
+        <div class="faq-container" >
+            <div id="row1">
+            <div class="faq-item">
+                <div class="faq-question">What is HopeBites?</div>
+                <div class="faq-answer">HopeBites is a non-profit organization dedicated to preventing food waste by rescuing surplus food and distributing it to those in need.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How does HopeBites work?</div>
+                <div class="faq-answer">We collect surplus food from restaurants, grocery stores, and individuals, ensuring it is safely stored and distributed to those facing food insecurity.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Why is food waste a problem?</div>
+                <div class="faq-answer">Millions of people go hungry every day, while tons of edible food are wasted. HopeBites bridges this gap by redirecting excess food to those who need it most.</div>
+            </div>
+            <div class="faq-item" >
+                <div class="faq-question">How do you ensure the food is safe to eat?
+                </div>
+                <div class="faq-answer">We follow strict food safety guidelines to ensure all collected food is fresh and safe before distribution.
+                </div>
+            </div>
+        </div>
+        <div id="row2">
+            <div class="faq-item" >
+                <div class="faq-question">How can I volunteer with HopeBites?
+                </div>
+                <div class="faq-answer">You can sign up through our website! Volunteers help with food collection, sorting, packaging, and distribution.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do I need any prior experience to volunteer?
+                </div>
+                <div class="faq-answer">No prior experience is required! We welcome anyone who wants to make a difference, and we provide necessary training.
+                </div>
+            </div>
+            <div class="faq-item" >
+                <div class="faq-question">Can I donate food?
+
+                </div>
+                <div class="faq-answer">Yes! If you’re a restaurant, store, or individual with surplus food, you can donate. Contact us, and we’ll arrange pickup or drop-off options.
+                </div>
+            </div>
+            <div class="faq-item" >
+                <div class="faq-question">Is there an age limit for volunteering?
+                </div>
+                <div class="faq-answer">We welcome volunteers of all ages! However, minors may need parental supervision depending on the task.
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    </section>
+
+    <script>
+        document.querySelectorAll(".faq-question").forEach(question => {
+             question.addEventListener("click", function() {
+                 let answer = this.nextElementSibling;
+                 answer.style.display = (answer.style.display === "block") ? "none" : "block";
+             });
+         });
+     </script>
+    {% include 'footer.html' %}
+</body>
+</html>
+</html>

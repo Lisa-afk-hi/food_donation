@@ -1,0 +1,211 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonial - HopeBites</title>
+    <link rel="stylesheet" href="{% static 'css/testimonial.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+    {% include "navbar.html" %}
+
+    <header class="testimonial-header"> 
+        <h1>Testimonial</h1>
+    </header>
+
+    <section class="endless_scroll">
+        <ul>
+            <li>
+                <h2>The joy of seeing someone enjoy a meal that would have otherwise been wasted is indescribable.</h2>
+            </li>
+            <li>
+                <h2>HopeBites is proof that when communities come together, no one has to go hungry.</h2>
+            </li>
+            <li>
+                <h2>HopeBites turns surplus into service, ensuring good food reaches those who need it most.</h2>
+            </li>
+            <li>
+                <h2>Volunteering with HopeBites showed me how small actions can create big change.</h2>
+            </li>
+            <li>
+                <h2>No food should go to waste when people are hungry. HopeBites bridges the gap, turning excess into impact.</h2>
+            </li>
+            <li>
+                <h2>Every meal rescued by HopeBites is a reminder that kindness and generosity can change lives.</h2>
+            </li>
+        </ul>
+
+        <ul aria-hidden="true">
+            <li>
+                <h2>The joy of seeing someone enjoy a meal that would have otherwise been wasted is indescribable.</h2>
+            </li>
+            <li>
+                <h2>HopeBites is proof that when communities come together, no one has to go hungry.</h2>
+            </li>
+            <li>
+                <h2>HopeBites turns surplus into service, ensuring good food reaches those who need it most.</h2>
+            </li>
+            <li>
+                <h2>Volunteering with HopeBites showed me how small actions can create big change.</h2>
+            </li>
+            <li>
+                <h2>No food should go to waste when people are hungry. HopeBites bridges the gap, turning excess into impact.</h2>
+            </li>
+            <li>
+                <h2>Every meal rescued by HopeBites is a reminder that kindness and generosity can change lives.</h2>
+            </li>
+        </ul>
+    </section>
+    
+    <section class="explore-header">
+        <div class="explore-header-content">
+            <h2>Explore Our Impact</h2>
+            <p>Discover how we are making a difference in the community.</p>
+        </div>
+        <div id="vl"></div>
+        <button><a href="{% url 'join' %}">Join the Cause</a></button>
+    </section>
+    <main class="main-content">
+        <div class="explore-container">
+            <div class="grid-pattern">
+
+                <!-- Left-Aligned Video Section -->
+                <section class="grid-section left-aligned" aria-label="Volunteer testimonials section 1">
+                    <div class="explore-grid">
+                        <div class="explore-item text-item">
+                            <blockquote>"HopeBites has changed my perspective on food waste!"</blockquote>
+                        </div>
+                        <div class="explore-item">
+                            <img src="{% static 'images/test-img-1.jpg' %}" alt="Volunteer smiling while packing food" loading="lazy">
+                        </div>
+                        <div class="explore-item explore-video">
+                            <video controls preload="metadata" poster="{% static 'images/video-poster.jpg' %}">
+                                <source src="{% static 'images/test-vid-1.mp4' %}" type="video/mp4">
+                                Your browser does not support HTML5 video. Here is a <a href="{% static 'images/test-vid-1.mp4' %}">link to the video</a> instead.
+                            </video>
+                        </div>
+                        <div class="explore-item">
+                            <img src="{% static 'images/test-img-2.jpg' %}" alt="Volunteer serving meals to community members" loading="lazy">
+                        </div>
+                        <div class="explore-item text-item">
+                            <blockquote>"This initiative is life-changing!"</blockquote>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Right-Aligned Video Section -->
+                {% comment %} <section class="grid-section right-aligned" aria-label="Volunteer testimonials section 2">
+                    <div class="explore-grid">
+                        <div class="explore-item text-item">
+                            <blockquote>"HopeBites truly cares about the community!"</blockquote>
+                        </div>
+                        <div class="explore-item">
+                            <img src="{% static 'images/volunteer3.jpg' %}" alt="Group of volunteers preparing food packages" loading="lazy">
+                        </div>
+                        <div class="explore-item explore-video">
+                            <video controls preload="metadata" poster="{% static 'images/video-poster.jpg' %}">
+                                <source src="{% static 'videos/testimonial.mp4' %}" type="video/mp4">
+                                Your browser does not support HTML5 video. Here is a <a href="{% static 'videos/testimonial.mp4' %}">link to the video</a> instead.
+                            </video>
+                        </div>
+                        <div class="explore-item text-item">
+                            <blockquote>"Volunteering here is so rewarding!"</blockquote>
+                        </div>
+                        <div class="explore-item">
+                            <img src="{% static 'images/volunteer4.jpg' %}" alt="Volunteer organizing donated food items" loading="lazy">
+                        </div>
+                    </div>
+                </section> {% endcomment %}
+
+                <!-- Third Section -->
+                <section class="grid-section left-aligned" aria-label="Volunteer testimonials section 3">
+                    <div class="explore-grid">
+                        <div class="explore-item explore-video">
+                            <video controls preload="metadata" poster="{% static 'images/video-poster.jpg' %}">
+                                <source src="{% static 'images/test-vid-2.mp4' %}" type="video/mp4">
+                                Your browser does not support HTML5 video. Here is a <a href="{% static 'images/test-vid2-.mp4' %}">link to the video</a> instead.
+                            </video>
+                        </div>
+                        <div class="explore-item text-item">
+                            <blockquote>"Being part of HopeBites is amazing!"</blockquote>
+                        </div>
+                        <div class="explore-item">
+                            <img src="{% static 'images/test-img-3.jpg' %}" alt="Community members receiving food packages" loading="lazy">
+                        </div>
+                        <div class="explore-item">
+                            <img src="{% static 'images/test-img-4.jpg' %}" alt="HopeBites team organizing a food drive" loading="lazy">
+                        </div>
+                        <div class="explore-item text-item">
+                            <blockquote>"Every time I volunteer, I feel inspired!"</blockquote>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Left-Aligned Video Section -->
+                <section class="grid-section left-aligned" aria-label="Volunteer testimonials section 1">
+                    <div class="explore-grid">
+                        <div class="explore-item text-item">
+                            <blockquote>"HopeBites has changed my perspective on food waste!"</blockquote>
+                        </div>
+                        <div class="explore-item">
+                            <img src="{% static 'images/test-img-5.jpg' %}" alt="Volunteer smiling while packing food" loading="lazy">
+                        </div>
+                        <div class="explore-item explore-video">
+                            <video controls preload="metadata" poster="{% static 'images/video-poster.jpg' %}">
+                                <source src="{% static 'images/test-vid-3.mp4' %}" type="video/mp4">
+                                Your browser does not support HTML5 video. Here is a <a href="{% static 'images/test-vid-1.mp4' %}">link to the video</a> instead.
+                            </video>
+                        </div>
+                        <div class="explore-item">
+                            <img src="{% static 'images/test-img-6.png' %}" alt="Volunteer serving meals to community members" loading="lazy">
+                        </div>
+                        <div class="explore-item text-item">
+                            <blockquote>"This initiative is life-changing!"</blockquote>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Third Section -->
+                <section class="grid-section left-aligned" aria-label="Volunteer testimonials section 3">
+                    <div class="explore-grid">
+                        <div class="explore-item explore-video">
+                            <video controls preload="metadata" poster="{% static 'images/video-poster.jpg' %}">
+                                <source src="{% static 'images/test-vid-2.mp4' %}" type="video/mp4">
+                                Your browser does not support HTML5 video. Here is a <a href="{% static 'images/test-vid2-.mp4' %}">link to the video</a> instead.
+                            </video>
+                        </div>
+                        <div class="explore-item text-item">
+                            <blockquote>"Being part of HopeBites is amazing!"</blockquote>
+                        </div>
+                        <div class="explore-item">
+                            <img src="{% static 'images/test-img-7.jpg' %}" alt="Community members receiving food packages" loading="lazy">
+                        </div>
+                        <div class="explore-item">
+                            <img src="{% static 'images/test-img-8.webp' %}" alt="HopeBites team organizing a food drive" loading="lazy">
+                        </div>
+                        <div class="explore-item text-item">
+                            <blockquote>"Every time I volunteer, I feel inspired!"</blockquote>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+        
+        <!-- Modal -->
+        <div id="modal" class="modal" onclick="closeModal()">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <div id="modal-media"></div>
+            </div>
+        </div>
+    
+    {% include "footer.html" %}
+    <script src="{% static 'js/explore.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - HopeBites</title>
+    <link rel="stylesheet" href="{% static 'css/donate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+    {% include "navbar.html" %}
+
+    <header class="donate-header">
+        <h1>Give the Gift of <span style="color: #068d6e;">food</span> </h1>
+        <h1>with <span style="color: #068d6e;">HopeBites</span></h1>
+        <button class="donate-button"><a href="#donate_form">Donate Now</a></button>
+    </header>
+
+    <div class="line">
+    <h1 style=" padding-left:140px; font-size: 36px;"> Whether it’s a single meal or a large quantity, every contribution counts.</h1>
+    </div>
+
+    <!-- Banner Section  -->
+    <section id="receiving">
+        <div class="left-container">
+            <h1>Who can <br>
+            <span style="font-size: 52px;">Donate?</span>
+            </h1>
+        </div>
+        <div id="vl"></div>
+        <div class="right-container">
+            <h1>We welcome all groups of people to join our cause. They can be indiviusals, families, and organizations.</h1>
+        </div>
+    </section>
+
+    <section id="typeOfReceiver">
+        <div id="row01">
+            <div id="type1" class="types">
+                <h1> Homecooked Food Donors</h1>
+                <p>Do you have extra homecooked meals that are fresh and safe to consume? </p>
+                <img src="{% static 'images/donor-1.png' %}" alt="">
+                <p>Share your surplus food with those who need it the most.</p>
+            </div>
+            <div id="type2" class="types">
+                <h1>Raw Food Donors</h1>
+                <p>Support a family in need by donating essential raw food items like rice, flour, lentils, pulses, and cooking oil.</p>
+                <img src="{% static 'images/donor-2.png' %}" alt="">
+                <p> These staples help people prepare fresh, nourishing meals for themselves and their loved ones.</p>
+            </div>
+            <div id="type3" class="types">
+                <h1>NGO & Bulk Donors</h1>
+                <p>Are you an NGO, business, or an individual who wants to buy food and donate?</p>
+                <img src="{% static 'images/donor-3.png' %}" alt="">
+                <p>You can purchase grocery kits, ready-to-eat meals, or other essentials and help make a meaningful impact.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Donation Guidelines & Restrictions Section -->
+    <section id="donation-guidelines">
+        <h2>Food Donation Guidelines & Restrictions</h2>
+        <p>To ensure the safety and well-being of recipients, all donated food must meet certain quality standards. Please review the following guidelines before making a donation:</p>
+
+        <h3>Accepted Food Donations</h3>
+
+        <h4>1. Homecooked Meals</h4>
+        <ul>
+            <li>✔ Freshly prepared, hygienically cooked meals (within the last 4 hours)</li>
+            <li>✔ Properly packed in clean, sealed, and leak-proof containers</li>
+            <li>✔ Vegetarian and non-vegetarian meals should be clearly labeled</li>
+            <li>✔ No excessive oil, salt, or spice to ensure suitability for all age groups</li>
+            <li>✔ No meals that require refrigeration unless coordinated in advance</li>
+        </ul>
+
+        <h4>2. Raw Food Materials</h4>
+        <ul>
+            <li>✔ Unopened, sealed, and non-expired food packets (rice, flour, pulses, oil, etc.)</li>
+            <li>✔ Dry food items that have a long shelf life</li>
+            <li>✔ Fruits and vegetables that are fresh and unspoiled</li>
+            <li>✔ Dairy products with proper expiration labeling and within safe consumption dates</li>
+        </ul>
+
+        <h4>3. Ready-to-Eat & Packaged Foods</h4>
+        <ul>
+            <li>✔ Sealed and properly labeled packaged foods (biscuits, snacks, etc.)</li>
+            <li>✔ Canned food with intact packaging and valid expiration dates</li>
+            <li>✔ Instant meals or food kits with clear instructions and non-expired ingredients</li>
+        </ul>
+
+        <h3>Restricted & Not Accepted Donations</h3>
+        <ul>
+            <li>⛔ <b>Spoiled, Stale, or Leftover Food</b> – Any food that has been partially eaten or left at room temperature for too long.</li>
+            <li>⛔ <b>Expired or Opened Packaged Food</b> – Food with broken seals, damaged packaging, or past expiration dates.</li>
+            <li>⛔ <b>Alcohol, Tobacco, or Processed Junk Food</b> – No alcohol, cigarettes, soft drinks, or excessive junk food.</li>
+            <li>⛔ <b>Highly Perishable Items</b> – Items like raw meat, seafood, or dairy that require immediate refrigeration unless pre-arranged.</li>
+            <li>⛔ <b>Homemade Fermented or Pickled Items</b> – Due to safety concerns, these will not be accepted.</li>
+        </ul>
+
+        <p>By following these guidelines, we ensure that all donated food remains <b>safe, nutritious, and suitable</b> for those in need.</p>
+    </section>
+
+    <!-- Banner Section  -->
+    <section class="explore-header">
+        <div class="explore-header-content">
+            <h2>Partner with Us</h2>
+            <p>Collaborate with HopeBites to maximize our collective impact.</p>
+            <button class="explore-button"><a href="{% url "join" %}">Join Us</a></button>
+        </div>
+        <div id="explore-vl"></div>
+        <img src="{% static "images/scrollimg3.jpg" %}" alt="">
+    </section>
+ 
+    <!-- FAQs -->
+    <section id="faqs">
+        <h2 id="Heading">Frequently Asked Questions</h2>
+        <div class="faq-container" >
+            <div id="row1">
+            <div class="faq-item">
+                <div class="faq-question">Why Donate?</div>
+                <div class="faq-answer">Your contribution helps us provide meals to those in need. Every donation, big or small, makes a difference.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How does HopeBites work?</div>
+                <div class="faq-answer">We collect surplus food from restaurants, grocery stores, and individuals, ensuring it is safely stored and distributed to those facing food insecurity.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Why is food waste a problem?</div>
+                <div class="faq-answer">Millions of people go hungry every day, while tons of edible food are wasted. HopeBites bridges this gap by redirecting excess food to those who need it most.</div>
+            </div>
+            <div class="faq-item" >
+                <div class="faq-question">How do you ensure the food is safe to eat?
+                </div>
+                <div class="faq-answer">We follow strict food safety guidelines to ensure all collected food is fresh and safe before distribution.
+                </div>
+            </div>
+        </div>
+        <div id="row2">
+            <div class="faq-item" >
+                <div class="faq-question">How to donate?</div>
+                <div class="faq-answer">You can donate through our secure online platform. Choose the amount you wish to contribute and follow the instructions.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do I need any prior experience to volunteer?
+                </div>
+                <div class="faq-answer">No prior experience is required! We welcome anyone who wants to make a difference, and we provide necessary training.
+                </div>
+            </div>
+            <div class="faq-item" >
+                <div class="faq-question">Can I donate food?
+
+                </div>
+                <div class="faq-answer">Yes! If you’re a restaurant, store, or individual with surplus food, you can donate. Contact us, and we’ll arrange pickup or drop-off options.
+                </div>
+            </div>
+            <div class="faq-item" >
+                <div class="faq-question">Is there an age limit for volunteering?
+                </div>
+                <div class="faq-answer">We welcome volunteers of all ages! However, minors may need parental supervision depending on the task.
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    </section>
+
+    <section id="donate_form">
+
+        <div id="container">
+            <h2>Connect with Us</h2>
+            <div id="join">
+                <p>Ready to Donate?</p>
+                <p>Fill out the form below to share details about your donation, and our team will coordinate the rest!</p>
+            </div>
+            <!-- Display error messages -->
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <!-- Display form errors -->
+            {% if errors %}
+                <ul class="error-messages">
+                    {% for key, error in errors.items %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <div id="form">
+                <form action="{% url 'contact' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" id="name" name="name" placeholder="Name" value="{{ form_data.name|default:'' }}" required>
+                    <input type="email" id="email" name="email" placeholder="Email address" value="{{ form_data.email|default:'' }}" required>   
+                    <input type="text" id="phone" name="phone" placeholder="Phone no" value="{{ form_data.phone|default:'' }}" required>
+                    
+                    <!-- Donation Type -->
+                    <div class="form-group">
+                        <label for="donation_type">Donation Type:</label>
+                        <select id="donation_type" name="donation_type" required>
+                            <option value="">-- Select Donation Type --</option>
+                            <option value="food" {% if form_data.donation_type == 'food' %}selected{% endif %}>Food</option>
+                            <option value="funds" {% if form_data.donation_type == 'funds' %}selected{% endif %}>Funds</option>
+                            <option value="supplies" {% if form_data.donation_type == 'supplies' %}selected{% endif %}>Other Supplies</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Preferred Contact Method -->
+                    <div class="form-group">
+                        <label>Preferred Contact Method:</label>
+                        <div>
+                            <input type="radio" id="contact_email" name="contact_method" value="email" {% if form_data.contact_method == 'email' %}checked{% endif %} required>
+                            <label for="contact_email">Email</label>
+                            
+                            <input type="radio" id="contact_whatsapp" name="contact_method" value="whatsapp" {% if form_data.contact_method == 'whatsapp' %}checked{% endif %} required>
+                            <label for="contact_whatsapp">WhatsApp</label>
+                        </div>
+                    </div>
+                    
+                    <input type="text" id="subject" name="subject" placeholder="Subject" value="{{ form_data.subject|default:'' }}" required>
+                    <textarea id="message" name="message" placeholder="Message" required>{{ form_data.message|default:'' }}</textarea>
+                    <button type="submit">Submit</button>
+                </form> 
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll(".faq-question").forEach(question => {
+             question.addEventListener("click", function() {
+                 let answer = this.nextElementSibling;
+                 answer.style.display = (answer.style.display === "block") ? "none" : "block";
+             });
+         });
+     </script>
+    
+    {% include "footer.html"%}
+</body>
+</html>

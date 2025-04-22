@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us - HopeBites</title>
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    {% block content %}
+
+        <header class="header"> <h1>Join Us</h1> </header>
+
+        <div id="container">
+            <h2>Personal Information</h2>
+            <div id="join">
+                <p>Join us and be a part of the change you want to see in the world. We are always looking for volunteers to help us in our mission to end hunger. If you are interested in joining us, please fill out the form below and we will get back to you as soon as possible.</p>
+
+                <!-- Display error messages -->
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="{{ message.tags }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <!-- Display form errors -->
+                {% if errors %}
+                    <ul class="error-messages">
+                        {% for key, error in errors.items %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <form action="{% url 'join' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" id="fname" name="fname" placeholder="First name" value="{{ form_data.fname|default:'' }}" required>
+                    <input type="text" id="lname" name="lname" placeholder="Last name" value="{{ form_data.lname|default:'' }}" required>
+                    <input type="email" id="email" name="email" placeholder="Email address" value="{{ form_data.email|default:'' }}" required>
+                    <input type="text" id="phone" name="phone" placeholder="Phone no" value="{{ form_data.phone|default:'' }}" required>
+                    <input type="text" id="address" name="address" placeholder="Address" value="{{ form_data.address|default:'' }}" required>
+                    <input type="text" id="why" name="why" placeholder="Why do you want to join us?" value="{{ form_data.why|default:'' }}" required>
+                    <input type="text" id="message" name="message" placeholder="Message" value="{{ form_data.message|default:'' }}" required>
+                    <input type="text" id="availability" name="availability" placeholder="Available during the week" value="{{ form_data.availability|default:'' }}" required>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    {% endblock %}
+    {% include 'footer.html' %}
+</body>
+</html>

@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - HopeBites</title>
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    {% block content %}
+
+        <header class="header"> <h1>Contact Us</h1> </header>
+
+        <div id="container">
+            <h2>Connect with Us</h2>
+            <div id="join">
+                <p>We’d love to hear from you! Whether you're looking to support our mission or in need of assistance, we’re here to help. Please fill out the form below, and a member of our team will reach out to you as soon as possible. Together, we can make a difference!</p>
+                <p>For immediate assistance, please call us at <strong>+91 1234567890</strong></p>    
+        
+            <!-- Display error messages -->
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        
+            <!-- Display form errors -->
+            {% if errors %}
+                <ul class="error-messages">
+                    {% for key, error in errors.items %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        
+            <div id="form">
+                <form action="{% url 'contact' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" id="name" name="name" placeholder="Name" value="{{ form_data.name|default:'' }}" required>
+                    <input type="email" id="email" name="email" placeholder="Email address" value="{{ form_data.email|default:'' }}" required>   
+                    <input type="text" id="phone" name="phone" placeholder="Phone no" value="{{ form_data.phone|default:'' }}" required>
+                    
+                    <!-- Purpose of Inquiry -->
+                    <div class="form-group">
+                        <label for="purpose">Purpose of Inquiry:</label>
+                        <select id="purpose" name="purpose" required>
+                            <option value="">-- Select Purpose --</option>
+                            <option value="donate" {% if form_data.purpose == 'donate' %}selected{% endif %}>I want to donate</option>
+                            <option value="assistance" {% if form_data.purpose == 'assistance' %}selected{% endif %}>I need assistance</option>
+                            <option value="general" {% if form_data.purpose == 'general' %}selected{% endif %}>I have a general inquiry</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Donation Type (hidden by default) -->
+                    <div id="donation-type" class="conditional-field" style="display: none;">
+                        <label for="donation_type">Donation Type:</label>
+                        <select id="donation_type" name="donation_type">
+                            <option value="">-- Select Donation Type --</option>
+                            <option value="food" {% if form_data.donation_type == 'food' %}selected{% endif %}>Food</option>
+                            <option value="funds" {% if form_data.donation_type == 'funds' %}selected{% endif %}>Funds</option>
+                            <option value="supplies" {% if form_data.donation_type == 'supplies' %}selected{% endif %}>Other Supplies</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Assistance Needs (hidden by default) -->
+                    <div id="assistance-needs" class="conditional-field" style="display: none;">
+                        {% comment %} <label for="needs_description">Describe Your Needs:</label> {% endcomment %}
+                        <textarea id="needs_description" name="needs_description" placeholder="Describe Your Needs:">{{ form_data.needs_description|default:'' }}</textarea>
+                    </div>
+                    
+                    <!-- Preferred Contact Method -->
+                    <div class="form-group">
+                        <label>Preferred Contact Method:</label>
+                        <div>
+                            <input type="radio" id="contact_email" name="contact_method" value="email" {% if form_data.contact_method == 'email' %}checked{% endif %} required>
+                            <label for="contact_email">Email</label>
+                            
+                            <input type="radio" id="contact_phone" name="contact_method" value="phone" {% if form_data.contact_method == 'phone' %}checked{% endif %} required>
+                            <label for="contact_phone">Phone</label>
+                        </div>
+                    </div>
+                    
+                    <input type="text" id="subject" name="subject" placeholder="Subject" value="{{ form_data.subject|default:'' }}" required>
+                    <textarea id="message" name="message" placeholder="Message" required>{{ form_data.message|default:'' }}</textarea>
+                    <button type="submit">Submit</button>
+                </form> 
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+    <script src="{% static 'js/join.js' %}"></script>
+
+    {% include 'footer.html' %}
+</body>
+</html>

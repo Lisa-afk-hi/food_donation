@@ -1,0 +1,351 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home page - HopeBites{% endblock %}</title>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=keyboard_arrow_down" />
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
+
+    <script src="{% static 'js/script.js' %}" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <style>
+        #bg-div
+        {
+            background-image: url("{% static 'images/scrollimg.jpg' %}");
+            display: flex;
+            min-width: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        #bg-div>h1
+        {
+            color: white;
+            font-size: 35px;
+            text-align: center;
+            margin-bottom: 2%;
+        }
+        #bg-div>button
+        {
+            height: 50px;
+            width: 150px;
+            font-size: 20px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 25px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        #bg-div>button:hover
+        {
+            background-color: #068d6e;;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="main">
+        {% include "navbar.html" %}
+        <!-- Hero Section start -->
+        <div id="landingContent">
+            <!-- Hero Section content part -->
+            <div id="content">
+                <h1>Fighting Hunger, <br>One meal at a Time</h1>
+                <p>Join us in making a difference by donating food or supporting our cause.
+                </p>
+                <div id="buttons">
+                    <button id="donate"><a href="{% url "donate" %}">Got extra food? </a></button>
+                    <button id="request"><a href="{% url "reciever" %}">Need a meal?</a></button>
+                </div>
+            </div>
+            <!-- Hero Section images part -->
+            <div id="landingImage">
+                <div class="col1">
+                    <div id="landingImage1">
+                    </div>
+                    <div id="landingImage2">
+
+                    </div>
+                </div>
+                <div class="col2">
+                    <div id="landingImage3">
+                    </div>
+                    <div id="landingImage4"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section ends -->
+
+    <!-- Banner Section  -->
+    <section id="banner">
+        <div id="welcomePart">Welcome to <span style="color: #ebaa30; font-size: 42px;">HopeBites</span></div>
+        <div id="vl"></div>
+        <div id="paraPart">At HopeBites, no meal goes to waste when someone is in need. We connect generous donors with individuals and communities facing food insecurity, creating a cycle of kindness and sustainability.Whether you're sharing surplus food or seeking support, you're in the right place. Join our community of donors, receivers, and volunteers to reduce waste, nourish lives, and build a stronger world.
+        </div>
+    </section>
+    <!-- how it works section -->
+    <div id="work-h1">
+        <h1>How it works !!</h1>
+    </div>
+    <div class="work">
+        <div class="w1">
+            <img src="{% static 'images/listsurplusfood.gif' %}" alt="">
+            <h2> List Surplus Food</h2>
+            <p><span class="numbering">01</span>Donors post available food on our platform.
+            </p>
+        </div>
+        <div class="w2">
+            <img src="{% static 'images/connectandcoordinate.gif' %}" alt="">
+            <h2>Connect & Coordinate</h2>
+            <p><span class="numbering">02</span>Receivers find and request food nearby.
+            </p>
+        </div>
+        <div class="w3">
+            <img src="{% static 'images/shareandsupprot.gif' %}" alt="">
+            <h2>Share & Support </h2>
+            <p><span class="numbering">03</span> Donors and receivers arrange pickup or delivery.</p>
+        </div>
+    </div>
+    <!-- Image background Div -->
+     <section id="bg-div"  style=" width: 100%;background-attachment: fixed;background-repeat: no-repeat;min-height: 500px;
+     background-attachment: fixed;
+     background-position: center;">
+        <h1>"The smallest act of kindness is worth more than the grandest intention." </h1>
+        <button><a href="{% url "join" %}">Join us now !</a></button></div>
+     </section>
+    <!-- Meet the Team Part -->
+     <section id="meetTeam">
+        <h1>Meet The Team</h1>
+        <div id="team">
+            <div id="mem1" class="card">
+                <img src="{% static 'images/team-g-1.jpg' %}" alt="">
+                <h1>Trusha Singh</h1>
+                <p>“We don’t just donate food; we share kindness and a sense of belonging.”
+                    </p>
+                    <div class="contactMem">
+                        <a href=""><i class="fi fi-rr-phone-call one" ></i></a>
+                        <button class="joinbutton"><a href="{% url "join" %}">Join the cause</a></button>
+                    </div>
+            </div>
+            <div id="mem2" class="card">
+                <img src="{% static 'images/team-g-2.jpg' %}" alt="">
+                <h1>Saloni Verma</h1>
+                <p>
+                    "Food should fill stomachs, not landfills. We turn surplus into service."
+                </p>
+                <div class="contactMem">
+                    <a href=""><i class="fi fi-rr-phone-call one" ></i></a>
+                    <button class="joinbutton"><a href="{% url "join" %}">Join the cause</a></button>
+                </div>
+            </div>
+            <div id="mem3" class="card">
+                <img src="{% static 'images/team-b-1.webp' %}" alt="">
+                <h1>Gautam Sharma</h1>
+                <p>“Hunger is not about scarcity—it’s about access.”
+                </p>
+                <div class="contactMem">
+                    <a href=""><i class="fi fi-rr-phone-call one" ></i></a>
+                    <button class="joinbutton"><a href="{% url "join" %}">Join the cause</a></button>
+                </div>
+            </div>
+            <div id="mem4" class="card">
+                <img src="{% static 'images/team-b-2.webp' %}" alt="">
+                <h1>Hari Patel</h1>
+                <p>“We don’t just collect food—we collect opportunities to make a difference.”
+                </p>
+                <div class="contactMem">
+                    <a href=""><i class="fi fi-rr-phone-call one" ></i></a>
+                    <button class="joinbutton"><a href="{% url "join" %}">Join the cause</a></button>
+                </div>
+            </div>
+         </div>
+     </section>
+     <!-- testimonials -->
+      <section id="testimonials">
+        <h1 id="testHeading" style = "text-align: center;
+    color: black;">What Communities Say ! </h1>
+        <div id="testContainer">
+            <div class="slide-container swiper">
+                <div class="slide-content">
+                    <div class="card-wrapper swiper-wrapper">
+                                <!-- 1  -->
+                        <div class="test-card swiper-slide">
+                            <div class="image-content">
+                                <span class="overlay"></span>
+                                <div class="card-image">
+                                    <img src="{% static 'images/b1.jpg' %}" alt="" class="card-img">
+                                </div>
+                            </div>
+
+                            <div class="card-content">
+                                <h2 class="names"> Aarav Mehta, Volunteer</h2>
+                                <p class="description">“Volunteering with HopeBites has been life-changing. Knowing that my small efforts help feed families who would otherwise go hungry fills my heart with purpose.”</p>
+                                <h5 class="role">Volunteer</h5>
+                            </div>
+                        </div>
+                                <!-- 2  -->
+                        <div class="test-card swiper-slide">
+                            <div class="image-content">
+                                <span class="overlay"></span>
+                                <div class="card-image">
+                                    <img src="{% static 'images/g1.jpg' %}" alt="" class="card-img">
+                                </div>
+                            </div>
+
+                            <div class="card-content">
+                                <h2 class="names">Sunita Verma</h2>
+                                <p class="description">“I was struggling to put food on the table for my kids, but HopeBites changed that. Thanks to their volunteers, my family has fresh meals and hope for a better tomorrow.”</p>
+                                <h5 class="role">Beneficiary</h5>
+                            </div>
+                        </div>
+                                <!-- 3  -->
+                        <div class="test-card swiper-slide">
+                            <div class="image-content">
+                                <span class="overlay"></span>
+                                <div class="card-image">
+                                    <img src="{% static 'images/b2.jpg' %}" alt="" class="card-img">
+                                </div>
+                            </div>
+
+                            <div class="card-content">
+                                <h2 class="names">Farhan Sheikh</h2>
+                                <p class="description">“It’s not just food they give—it’s kindness, respect, and a reminder that people care. I’m forever grateful.” </p>
+                                <h5 class="role">Beneficiary
+                                </h5>
+                            </div>
+                        </div>
+                                <!-- 4  -->
+                        <div class="test-card swiper-slide">
+                            <div class="image-content">
+                                <span class="overlay"></span>
+                                <div class="card-image">
+                                    <img src="{% static 'images/g2.jpg' %}" alt="" class="card-img">
+                                </div>
+                            </div>
+
+                            <div class="card-content">
+                                <h2 class="names"> Meera Joshi</h2>
+                                <p class="description">“As a donor, I wanted to make sure my contributions truly helped people. Seeing the impact of HopeBites firsthand has been incredible—they’re changing lives.”</p>
+                                <h5 class="role">Supporter</h5>
+                            </div>
+                        </div>
+                                <!-- 5  -->
+                        <div class="test-card swiper-slide">
+                            <div class="image-content">
+                                <span class="overlay"></span>
+                                <div class="card-image">
+                                    <img src="{% static 'images/b3.jpg' %}" alt="" class="card-img">
+                                </div>
+                            </div>
+
+                            <div class="card-content">
+                                <h2 class="names"> Suresh Menon</h2>
+                                <p class="description">“I used to throw away unsold food, but thanks to HopeBites, I know it’s going to families in need instead. It’s a win-win for everyone.”</p>
+                                <h5 class="role">Grocery Store Manager</h5>
+                            </div>
+                        </div>
+                                <!-- 6  -->
+                        <div class="test-card swiper-slide">
+                            <div class="image-content">
+                                <span class="overlay"></span>
+                                <div class="card-image">
+                                    <img src="{% static 'images/g3.jpg' %}" alt="" class="card-img">
+                                </div>
+                            </div>
+
+                            <div class="card-content">
+                                <h2 class="names">Riya Sharma</h2>
+                                <p class="description">“Before joining HopeBites, I never realized how much perfectly good food goes to waste. Now, I spend my weekends rescuing meals and seeing the direct impact we make—it’s incredibly rewarding.”</p>
+                                <h5 class="role">Volunteer</h5>
+                            </div>
+                        </div>
+     
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+      </section>
+      <!-- FAQs -->
+       <section id="faqs">
+        <h2 id="sectionHeading">Frequently Asked Questions</h2>
+        <div class="faq-container" >
+            <div id="row1">
+            <div class="faq-item">
+                <div class="faq-question">What is HopeBites?</div>
+                <div class="faq-answer">HopeBites is a non-profit organization dedicated to preventing food waste by rescuing surplus food and distributing it to those in need.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How does HopeBites work?</div>
+                <div class="faq-answer">We collect surplus food from restaurants, grocery stores, and individuals, ensuring it is safely stored and distributed to those facing food insecurity.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Why is food waste a problem?</div>
+                <div class="faq-answer">Millions of people go hungry every day, while tons of edible food are wasted. HopeBites bridges this gap by redirecting excess food to those who need it most.</div>
+            </div>
+            <div class="faq-item" >
+                <div class="faq-question">How do you ensure the food is safe to eat?
+                </div>
+                <div class="faq-answer">We follow strict food safety guidelines to ensure all collected food is fresh and safe before distribution.
+                </div>
+            </div>
+        </div>
+        <div id="row2">
+            <div class="faq-item" >
+                <div class="faq-question">How can I volunteer with HopeBites?
+                </div>
+                <div class="faq-answer">You can sign up through our website! Volunteers help with food collection, sorting, packaging, and distribution.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do I need any prior experience to volunteer?
+                </div>
+                <div class="faq-answer">No prior experience is required! We welcome anyone who wants to make a difference, and we provide necessary training.
+                </div>
+            </div>
+            <div class="faq-item" >
+                <div class="faq-question">Can I donate food?
+
+                </div>
+                <div class="faq-answer">Yes! If you’re a restaurant, store, or individual with surplus food, you can donate. Contact us, and we’ll arrange pickup or drop-off options.
+                </div>
+            </div>
+            <div class="faq-item" >
+                <div class="faq-question">Is there an age limit for volunteering?
+                </div>
+                <div class="faq-answer">We welcome volunteers of all ages! However, minors may need parental supervision depending on the task.
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+       </section>
+
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+       document.querySelectorAll(".faq-question").forEach(question => {
+            question.addEventListener("click", function() {
+                let answer = this.nextElementSibling;
+                answer.style.display = (answer.style.display === "block") ? "none" : "block";
+            });
+        });
+    </script>
+    {% include "footer.html" %}
+</body>
+
+</html>

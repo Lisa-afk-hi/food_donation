@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request - HopeBites</title>
+    <link rel="stylesheet" href="{% static 'css/receiver.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tesitimonial.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
+</head>
+
+<body>
+    {% include "navbar.html" %}
+    <!-- hero -->
+    {% comment %} <section id="heroSection">
+        <div id="content">
+            <h1>At HopeBites, we believe no one should go hungry. </h1>
+            <h4>If you or someone you know is in need of food assistance, we are here to help.</h4>
+        </div>
+        <img src="{% static 'images/receiver1.jpg' %}" alt="">
+    </section> {% endcomment %}
+
+    <header class="donate-header">
+        <h1>At <span style="color: #068d6e;">HopeBites</span>,</h1>
+        <h1>we believe no one should go hungry.</h1>
+        <button class="donate-button"><a href="#form">Request Now</a></button>
+    </header>
+
+    <div class="line">
+    <h1 style="text-align: center;">We believe in helping others in any possible way !</h1>
+    </div>
+
+    <!-- banner -->
+    <section id="receiving">
+        <div class="left-container">
+            <h1>Who can Receive food ?</h1>
+        </div>
+        <div id="vl"></div>
+        <div class="right-container">
+            <h1>Welcome! If you or your community need food assistance, we're here to help. Anyone facing hunger—individuals, families, shelters, and NGOs—can receive donations.</h1>
+        </div>
+    </section>
+    
+    <section id="typeOfReceiver">
+        <div id="row01">
+            <div id="type1" class="types">
+                <h1>Individuals & Families in Need </h1>
+                <img src="{% static 'images/family.png' %}" alt="">
+                <p>If you or your family are struggling to afford daily meals, we provide support through homecooked meals, grocery kits, and essential food items.
+                </p>
+            </div>
+            <div id="type2" class="types">
+                <h1>Senior Citizens & People with Disabilities</h1>
+                <img src="{% static 'images/olderpeople.png' %}" alt="">
+                <p>Elderly individuals, especially those living alone or with limited mobility, can request food assistance to ensure they have nutritious meals. </p>
+            </div>
+            <div id="type3" class="types">
+                <h1>Daily Wage Workers & Migrant Laborers </h1>
+                <img src="{% static "images/worker.png" %}" alt="">
+                <p>For those whose incomes are unstable or insufficient, we provide meal kits and essential food supplies to ease their burden.</p>
+            </div>
+        </div>
+        <div id="row02">
+            <div id="type4" class="types">
+                <h1> Orphanages & Shelters </h1>
+                <img src="{% static "images/orphange.png" %}" alt="">
+                <p>Organizations that care for orphans, homeless individuals, or vulnerable groups can request bulk food donations.  </p>
+            </div>
+            <div id="type5" class="types">
+                <h1>NGOs & Community Centers</h1>
+                <img src="{% static "images/ngos.png" %}" alt="">
+                <p>Nonprofits and community groups distributing food to those in need can apply for support from our donation network.</p>
+            </div>
+        </div>
+        
+    </section>
+    <!-- guide steps -->
+    <section id="receiverSteps">
+        <div id="guide1" class="g123">
+            <img src="{% static "images/formfill.png" %}" alt="">
+            <h1>Fill Out the Request Form</h1>
+            <p>Provide your details and specify the type of assistance needed.</p>
+        </div>
+        <div id="guide2" class="g123">
+            <img src="{% static "images/verification.png" %}" alt="">
+            <h1>Verification Process</h1>
+            <p>Our team will review your request to ensure fair distribution. </p>
+        </div>
+        <div id="guide3" class="g123">
+            <img src="{% static "images/donateFood.png" %}" alt="">
+            <h1>Food Distribution</h1>
+            <p>Once approved, you’ll receive details on when and where to collect the food or how it will be delivered.
+            </p>
+        </div>
+    </section>
+    <!--  -->
+    <!-- volunteer -->
+    <section id="volunteerForUs">
+        <div class="left-container">
+            <h1>Volunteer for us</h1>
+        </div>
+        <div id="vl"></div>
+        <div class="right-container">
+            <h1>Join our team and be a part of the change.</h1>
+            <button><a href="#form">Join Us</a></button>
+        </div>
+    </section>
+
+    <!-- FAQs -->
+    <section id="faqs">
+        <h2 id="sectionHeading">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div id="row1">
+                <div class="faq-item">
+                    <div class="faq-question">What is HopeBites?</div>
+                    <div class="faq-answer">HopeBites is a non-profit organization dedicated to preventing food waste by
+                        rescuing surplus food and distributing it to those in need.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How does HopeBites work?</div>
+                    <div class="faq-answer">We collect surplus food from restaurants, grocery stores, and individuals,
+                        ensuring it is safely stored and distributed to those facing food insecurity.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Why is food waste a problem?</div>
+                    <div class="faq-answer">Millions of people go hungry every day, while tons of edible food are
+                        wasted. HopeBites bridges this gap by redirecting excess food to those who need it most.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How do you ensure the food is safe to eat?
+                    </div>
+                    <div class="faq-answer">We follow strict food safety guidelines to ensure all collected food is
+                        fresh and safe before distribution.
+                    </div>
+                </div>
+            </div>
+            <div id="row2">
+                <div class="faq-item">
+                    <div class="faq-question">How can I volunteer with HopeBites?
+                    </div>
+                    <div class="faq-answer">You can sign up through our website! Volunteers help with food collection,
+                        sorting, packaging, and distribution.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do I need any prior experience to volunteer?
+                    </div>
+                    <div class="faq-answer">No prior experience is required! We welcome anyone who wants to make a
+                        difference, and we provide necessary training.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I donate food?
+
+                    </div>
+                    <div class="faq-answer">Yes! If you’re a restaurant, store, or individual with surplus food, you can
+                        donate. Contact us, and we’ll arrange pickup or drop-off options.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is there an age limit for volunteering?
+                    </div>
+                    <div class="faq-answer">We welcome volunteers of all ages! However, minors may need parental
+                        supervision depending on the task.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <section id="form">
+        <div id="container">
+            <h2>Connect with Us</h2>
+            <div id="join">
+                <p>We’d love to hear from you! If you need assistance, we’re here to help. Please fill out the form below, and a member of our team will reach out to you as soon as possible.</p>
+                <p>For immediate assistance, please call us at <strong>+91 1234567890</strong></p>
+        
+                <!-- Display error messages -->
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="{{ message.tags }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+        
+                <!-- Display form errors -->
+                {% if errors %}
+                    <ul class="error-messages">
+                        {% for key, error in errors.items %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+        
+                <div id="form">
+                    <form action="{% url 'contact' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="text" id="name" name="name" placeholder="Name" value="{{ form_data.name|default:'' }}" required>
+                        <input type="email" id="email" name="email" placeholder="Email address" value="{{ form_data.email|default:'' }}" required>   
+                        <input type="text" id="phone" name="phone" placeholder="Phone no" value="{{ form_data.phone|default:'' }}" required>
+        
+                        <!-- Purpose of Inquiry (Locked to Assistance) -->
+                        {% comment %} <input type="hidden" name="purpose" value="assistance"> {% endcomment %}
+        
+                        <!-- Assistance Needs (Always Visible) -->
+                        <div class="form-group">
+                            {% comment %} <label for="needs_description">Describe Your Needs:</label> {% endcomment %}
+                            <textarea id="needs_description" name="needs_description" placeholder="Describe Your Needs:"required>{{ form_data.needs_description|default:'' }}</textarea>
+                        </div>
+        
+                        <!-- Preferred Contact Method -->
+                        <div class="form-group">
+                            <label>Preferred Contact Method:</label>
+                            <div>
+                                <input type="radio" id="contact_email" name="contact_method" value="email" {% if form_data.contact_method == 'email' %}checked{% endif %} required>
+                                <label for="contact_email">Email</label>
+                                
+                                <input type="radio" id="contact_phone" name="contact_method" value="phone" {% if form_data.contact_method == 'phone' %}checked{% endif %} required>
+                                <label for="contact_phone">Phone</label>
+                            </div>
+                        </div>
+        
+                        <input type="text" id="subject" name="subject" placeholder="Subject" value="{{ form_data.subject|default:'' }}" required>
+                        <textarea id="message" name="message" placeholder="Message" required>{{ form_data.message|default:'' }}</textarea>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>        
+
+    {% include "footer.html" %}
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll(".faq-question").forEach(question => {
+            question.addEventListener("click", function () {
+                let answer = this.nextElementSibling;
+                answer.style.display = (answer.style.display === "block") ? "none" : "block";
+            });
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,426 @@
+:root {
+    --primary-orange: #EC993F;
+    --primary-green: #A4C53B;
+    --accent-green: #8EAF20;
+    --dark: #000101;
+    --light-gray: #95A5A5;
+
+    --text-light: #ffffff;
+    --hover-yellow: #FFD700;
+}
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Winky Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: auto;
+    font-style: normal;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Hero Section */
+#heroSection {
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+#heroImage {
+    height: 82%;
+    width: 45%;
+    margin: 2% 0;
+    padding: 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#image1, #image3, #image4 {
+    border-radius: 25px;
+    background-size: cover;
+    background-position: center;
+}
+
+#image1 {
+    height: 300px;
+    width: 350px;
+    margin: 1% 2% 1% 4%;
+    background-image: url("/static/images/image1.jpg");
+}
+
+#image3 {
+    height: 220px;
+    width: 350px;
+    margin: 1% 0 1% 6%;
+    background-image: url("/static/images/image2.jpg");
+}
+
+#image4 {
+    height: 220px;
+    width: 350px;
+    margin-left: 24px;
+    background-image: url("/static/images/image3.jpg");
+}
+
+#heroContent {
+    width: 45%;
+    height: 100%;
+    margin-left: 5%;
+    margin-top: 26%;
+    font-size: 25px;
+}
+
+#heroContent > h1 > span {
+    color: var(--accent-green);
+}
+
+#heroContent > h2 {
+    font-size: 28px;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+#heroContent > button {
+    background-color: var(--primary-orange);
+    font-size: 18px;
+    padding: 8px 22px;
+    border-radius: 25px;
+    margin-top: 30px;
+    height: 50px;
+    color: var(--dark);
+}
+
+#heroContent > button:hover {
+    background-color: var(--accent-green);
+    color: var(--text-light);
+}
+
+/* Problem Section */
+#problem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 500px;
+    background-color: var(--primary-orange);
+    margin: 15px;
+    padding: 20px;
+}
+
+#problemText {
+    width: 45%;
+    margin-left: 30px;
+}
+
+#problemText > h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+#problemText > p {
+    font-size: 16px;
+}
+
+.timeline {
+    width: 52%;
+    height: 100%;
+    position: relative;
+}
+
+.container {
+    padding: 20px 50px;
+    margin-top: 0px;
+    position: relative;
+    width: 40%;
+    animation: movedown 1s linear forwards;
+    opacity: 0;
+}
+
+@keyframes movedown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container:nth-child(1) { animation-delay: 1s; }
+.container:nth-child(2) { animation-delay: 2s; }
+.container:nth-child(3) { animation-delay: 3s; }
+
+.text-box {
+    padding: 10px 15px;
+    background-color: var(--accent-green);
+    position: relative;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.container h1 {
+    font-size: 85px;
+    color: var(--text-light);
+    position: absolute;
+    width: 40px;
+    border-radius: 50%;
+    top: -15px;
+    z-index: 10;
+}
+
+.left-container h1 { left: 94%; }
+.right-container h1 { left: 3px; }
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background-color: var(--text-light);
+    top: 0;
+    left: 50%;
+    margin-left: -3px;
+    animation: moveline 3s linear forwards;
+}
+
+@keyframes moveline {
+    0% { height: 0; }
+    100% { height: 100%; }
+}
+
+.left-container{
+    left: 85px;
+}
+
+#third{
+    bottom:90px;
+}
+
+.right-container{
+    left: 365px;
+    bottom: 50px;
+}
+.left-container-arrow, .right-container-arrow {
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 28px;
+    z-index: 1;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+}
+
+.left-container-arrow {
+    border-left: 15px solid var(--accent-green);
+    right: -16px;
+}
+
+.right-container-arrow {
+    border-right: 15px solid var(--accent-green);
+    left: -15px;
+}
+
+/* Solution Section */
+#solution {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 600px;
+    margin: 5% 15px;
+    padding: 20px;
+}
+
+#communityImage {
+    margin-left: 20px;
+    width: 45%;
+    background-color: var(--accent-green);
+    border-top-right-radius: 25%;
+    border-bottom-left-radius: 25%;
+    height: 100%;
+}
+
+#communityImage > img {
+    height: 380px;
+    width: 500px;
+    margin: 40px 0 0 70px;
+}
+
+#solutionText {
+    width: 45%;
+    height: 100%;
+    margin-right: 30px;
+}
+
+#solutionText > h1 {
+    font-size: 40px;
+    margin: 22% 0 20px;
+    color: var(--primary-orange);
+}
+
+#solutionText > p {
+    font-size: 16px;
+}
+
+/* Mission Section */
+#mission {
+    height: 500px;
+    width: 100%;
+    margin-bottom: 10%;
+}
+
+#missionHeading {
+    margin: 100px 0 11%;
+    text-align: center;
+    font-size: 40px;
+}
+
+.visionMission img {
+    height: 100px;
+    width: 100px;
+    margin-left: 90px;
+    margin-bottom: 50px;
+}
+
+#missionContainer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.visionMission {
+    width: 320px;
+    margin-bottom: 100px;
+}
+
+.visionMission h1 {
+    font-size: 22px;
+    margin-bottom: 7%;
+}
+
+/* Meet the Team */
+#meetTeam {
+    height: 600px;
+    margin: 3%;
+}
+
+#meetTeam > h1 {
+    padding: 4% 0;
+    text-align: center;
+    font-size: 40px;
+}
+
+#team {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 2px 15px var(--light-gray);
+    height: 450px;
+    width: 260px;
+    border-radius: 25px;
+}
+
+.card > img {
+    width: 250px;
+    height: 250px;
+    border-radius: 25px;
+}
+
+.card > h1 {
+    font-size: 20px;
+    padding: 28px 0 22px;
+}
+
+.card > p {
+    font-size: 15px;
+    text-align: center;
+}
+
+.card:hover {
+    box-shadow: 2px 2px 15px var(--hover-yellow);
+}
+
+/* Contact */
+.contactMem {
+    display: flex;
+    padding-top: 30px;
+    margin-bottom: 10%;
+}
+
+.joinbutton {
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
+    padding: 0 5px;
+    font-size: 15px;
+    background-color: var(--primary-orange);
+}
+
+.joinbutton:hover {
+    background-color: var(--accent-green);
+}
+
+.joinbutton > a {
+    text-decoration: none;
+    color: var(--dark);
+}
+
+.one, .two {
+    font-size: 18px;
+}
+
+.contactMem > a {
+    margin: 20px 0 0 10px;
+    text-decoration: none;
+    color: var(--dark);
+}
+
+.one:hover {
+    color: var(--accent-green);
+}
+
+.one {
+    padding: 50px 50px 0 0;
+}
+
+.two {
+    padding: 50px 0 0 50px;
+}

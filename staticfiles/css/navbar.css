@@ -1,0 +1,227 @@
+:root {
+    --primary-orange: #EC993F;
+    --primary-green: #A4C53B;
+    --accent-green: #8EAF20;
+    --dark: #000101;
+    --light-gray: #95A5A5;
+
+    --text-light: #ffffff;
+    --hover-yellow: #FFD700; /* kept for hover unless we define a new variant */
+}
+
+/* navbar.css - Fixed Version */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Winky Sans", sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+#navbar {
+    background-color: var(--accent-green);
+    color: var(--text-light);
+    padding: 10px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: 70px;
+    width: 100%;
+    background-image: none !important;
+    background-repeat: no-repeat !important;
+    background-position: initial !important;
+    background-size: initial !important;
+    background-attachment: initial !important;
+    background-origin: initial !important;
+    background-clip: initial !important;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    #navbar {
+        padding: 10px 20px;
+    }
+}
+
+#navlogo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 150px;
+}
+
+#navlogo img {
+    height: 50px;
+    width: auto;
+    max-height: 50px;
+}
+
+#navlogo p {
+    color: var(--text-light);
+    font-weight: bold;
+    font-size: clamp(16px, 2vw, 22px);
+    white-space: nowrap;
+}
+
+#navitems {
+    display: flex;
+    align-items: center;
+}
+
+#navitems ul {
+    display: flex;
+    gap: clamp(10px, 2vw, 25px);
+    padding-right: 20px;
+}
+
+#navitems ul li {
+    list-style: none;
+}
+
+#navitems ul li a {
+    color: var(--text-light);
+    font-weight: bold;
+    font-size: clamp(16px, 1.8vw, 20px);
+    padding: 5px 0;
+    position: relative;
+    text-decoration: none;
+}
+
+#navitems ul li a:hover {
+    color: var(--primary-orange); /* changed hover to orange for better contrast */
+}
+
+#hamburger {
+    display: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 5px;
+    z-index: 1001;
+}
+
+#hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-light);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+#mobile-nav {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: var(--accent-green);
+    z-index: 999;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+}
+
+#mobile-nav.active {
+    max-height: 500px;
+}
+
+#mobile-nav ul {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#mobile-nav ul li a {
+    color: var(--text-light);
+    font-weight: bold;
+    font-size: 18px;
+    display: block;
+    padding: 15px 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+#mobile-nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--primary-orange);
+}
+
+/* ====================== */
+/* FOOTER STYLES */
+/* ====================== */
+
+footer {
+    background-color: var(--dark);
+    color: var(--text-light);
+    padding: 30px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: auto;
+    position: relative;
+    z-index: 100;
+}
+
+footer #navlogo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 150px;
+    margin: 10px 0;
+}
+
+footer #navlogo img {
+    height: 40px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
+footer #navlogo p {
+    color: var(--text-light);
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+footer > p {
+    margin: 10px 0;
+    font-size: 16px;
+    text-align: center;
+    flex-grow: 1;
+    padding: 0 20px;
+}
+
+footer #socialmedia {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 10px 0;
+}
+
+footer #socialmedia img {
+    height: 30px;
+    width: 30px;
+    transition: all 0.3s ease;
+    filter: brightness(0) invert(1);
+}
+
+footer #socialmedia img:hover {
+    transform: scale(1.1);
+    filter: brightness(1) invert(0);
+}

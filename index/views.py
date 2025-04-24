@@ -367,9 +367,9 @@ def get_response_with_answer(user_response):
             ]
         },
         "contact hopebites": {
-            "answer": "You can reach us directly on WhatsApp for immediate assistance:",
-            "action": "https://web.whatsapp.com/"
-        }
+        "answer": "You can reach us directly on WhatsApp:",
+        "action": "https://api.whatsapp.com/send?phone=919137871700"  # ← Replace with your number
+}
     }
 
     default_response = {

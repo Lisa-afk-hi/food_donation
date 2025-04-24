@@ -97,9 +97,10 @@
         chatbox.innerHTML += `<div style="margin-bottom:10px;"><b>HopeBites:</b> ${response.answer}</div>`;
         
         // Handle WhatsApp contact action
+        //In the JavaScript section, find the contact response handler 
         if (response.action) {
             const link = document.createElement("a");
-            link.href = response.action;
+            link.href = "https://api.whatsapp.com/send?phone=919137871700";  // ← Replace 1234567890 with your number
             link.target = "_blank";
             link.innerHTML = '<button style="background:#25D366; color:white; border:none; padding:8px 12px; border-radius:4px; margin-top:5px; cursor:pointer;">Chat on WhatsApp</button>';
             chatbox.appendChild(link);

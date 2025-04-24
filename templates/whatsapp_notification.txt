@@ -1,0 +1,12 @@
+Hi {{ name }},
+
+Thank you for contacting HopeBites!
+Reference ID: {{ ref_id }}
+
+We've received your message:
+{{ message }}
+
+We'll respond within 24 hours.
+
+Best regards,
+HopeBites Team

@@ -404,22 +404,73 @@ def whatsapp_webhook(request):
 
 
 from django.shortcuts import render, redirect
+from django.core.mail import send_mail
 from django.contrib import messages
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.conf import settings
-from django.core.mail import send_mail
-from .models import Contact
-import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from .models import Contact
+import json
 import logging
 import pywhatkit
+
+logger = logging.getLogger(__name__)
+
+class NotificationError(Exception):
+    pass
+
+def send_email_notification(contact_data, contact_id):
+    """Send simple text email without templates"""
+    try:
+        subject = "Thank you for contacting HopeBites"
+        message = (
+            f"Hi {contact_data['name']},\n\n"
+            f"We've received your message (Reference ID: {contact_id}).\n"
+            f"Your message: {contact_data['message']}\n\n"
+            "Our team will respond shortly.\n\n"
+            "Best regards,\n"
+            "HopeBites Team"
+        )
+        
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[contact_data['email']],
+            fail_silently=False,
+        )
+        logger.info(f"Email sent to {contact_data['email']}")
+        return True
+    except Exception as e:
+        logger.error(f"Email failed for {contact_data['email']}: {str(e)}")
+        return False
+    
+def send_whatsapp_notification(contact_data, contact_id):
+    """Send WhatsApp message using pywhatkit"""
+    try:
+        pywhatkit.sendwhatmsg_instantly(
+            phone_no=f"+91{contact_data['phone']}",
+            message=(
+                f"Hi {contact_data['name']},\n\n"
+                f"We've received your request (Ref: #{contact_id}).\n"
+                "Our team will contact you shortly.\n\n"
+                "Best regards,\nHopeBites Team"
+            ),
+            wait_time=20,
+            tab_close=True,
+            close_time=3
+        )
+        logger.info(f"WhatsApp message sent to {contact_data['phone']}")
+    except Exception as e:
+        logger.error(f"WhatsApp failed for {contact_data['phone']}: {str(e)}")
+        raise NotificationError("WhatsApp notification failed")
 
 def contact(request):
     if request.method == 'POST':
         try:
-            # Extract and validate data
+            # Extract and validate form data
             data = {
                 'name': request.POST.get('name', '').strip(),
                 'email': request.POST.get('email', '').strip(),
@@ -431,101 +482,109 @@ def contact(request):
 
             # Validation
             errors = {}
-            if not data['name'] or any(char.isdigit() for char in data['name']):
-                errors['name'] = 'Valid name required'
-            
-            try:
-                validate_email(data['email'])
-            except ValidationError:
-                errors['email'] = 'Valid email required'
+            if not data['name']:
+                errors['name'] = 'Name is required'
+            elif any(char.isdigit() for char in data['name']):
+                errors['name'] = 'Name cannot contain numbers'
                 
-            if not data['phone'].isdigit() or len(data['phone']) < 10:
-                errors['phone'] = 'Valid phone number required'
+            if not data['email']:
+                errors['email'] = 'Email is required'
+            else:
+                try:
+                    validate_email(data['email'])
+                except ValidationError:
+                    errors['email'] = 'Invalid email address'
+                    
+            if not data['phone']:
+                errors['phone'] = 'Phone number is required'
+            elif not data['phone'].isdigit():
+                errors['phone'] = 'Phone must contain only digits'
                 
             if not data['purpose']:
-                errors['purpose'] = 'Purpose required'
+                errors['purpose'] = 'Purpose is required'
                 
             if not data['contact_method']:
-                errors['contact_method'] = 'Contact method required'
+                errors['contact_method'] = 'Contact method is required'
                 
-            if len(data['message']) < 10:
-                errors['message'] = 'Message too short'
+            if not data['message']:
+                errors['message'] = 'Message is required'
+            elif len(data['message']) < 10:
+                errors['message'] = 'Message must be at least 10 characters'
 
             if errors:
                 for error in errors.values():
                     messages.error(request, error)
-                return render(request, 'contact.html', {'errors': errors, 'form_data': request.POST})
+                return render(request, 'contact.html', {
+                    'errors': errors,
+                    'form_data': request.POST
+                })
 
             # Save to database
-            Contact.objects.create(**data)
+            contact_obj = Contact.objects.create(**data)
             
-            # Send confirmation based on method
-            if data['contact_method'] == 'email':
-                send_mail(
-                    'Thank you for contacting HopeBites',
-                    f"Hi {data['name']},\n\nWe've received your message and will respond shortly.\n\nYour message: {data['message']}\n\nBest,\nHopeBites Team",
-                    settings.DEFAULT_FROM_EMAIL,
-                    [data['email']],
-                    fail_silently=False
-                )
-            elif data['contact_method'] == 'phone' and hasattr(settings, 'TWILIO_ACCOUNT_SID'):
-                try:
-                    client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
-                    client.messages.create(
-                        body=f"Hi {data['name']}, we've received your message and will respond shortly.",
-                        from_='whatsapp:+14155238886',  # Your Twilio number
-                        to=f'whatsapp:+{data["phone"]}'
-                    )
-                except Exception as e:
-                    messages.warning(request, "Message sent but WhatsApp confirmation failed")
-
-            messages.success(request, 'Thank you for contacting us!')
-            return redirect('contact_success')
+            # Send notifications
+            email_sent = send_email_notification(data, contact_obj.id)
+            
+            whatsapp_sent = False
+            if data['contact_method'] == 'phone':
+                whatsapp_sent = send_whatsapp_notification(data, contact_obj.id)
+            
+            if email_sent and (data['contact_method'] != 'phone' or whatsapp_sent):
+                messages.success(request, 'Thank you! Your message has been received. We will contact you soon.')
+            elif not email_sent and data['contact_method'] != 'phone':
+                messages.warning(request, 'Form submitted successfully, but email notification failed. We will contact you shortly.')
+            elif data['contact_method'] == 'phone' and not whatsapp_sent:
+                messages.warning(request, 'Form submitted successfully, but WhatsApp notification failed. We will contact you shortly.')
+            else:
+                messages.warning(request, 'Form submitted successfully, but notifications failed. We will contact you shortly.')
+            
+            return redirect('contact')
 
         except Exception as e:
-            messages.error(request, f'Error: {str(e)}')
-            return render(request, 'contact.html')
+            logger.error(f"Contact form error: {str(e)}")
+            messages.error(request, 'An error occurred. Please try again.')
+            return render(request, 'contact.html', {'form_data': request.POST})
 
     return render(request, 'contact.html')
 
 @csrf_exempt
 def whatsapp_webhook(request):
+    """Handle incoming WhatsApp messages for basic chatbot functionality"""
     if request.method == "POST":
         try:
             data = json.loads(request.body.decode('utf-8'))
             user_message = data.get("Body", "").strip().lower()
             
             responses = {
-                "start": {
-                    "answer": "Welcome to HopeBites! How can we help?",
-                    "follow_up": ["Donate food", "Get assistance", "Volunteer"]
+                "hi": {
+                    "answer": "Hello! How can we help you today?",
+                    "options": ["Donate food", "Request assistance", "Volunteer"]
                 },
                 "donate": {
-                    "answer": "We accept food donations at our centers. Visit our website for locations.",
-                    "action": "https://hopebites.org/donate"
+                    "answer": "We accept food donations at our centers.",
+                    "action": "/donate"
                 },
                 "contact": {
-                    "answer": "Chat with us directly:",
-                    "action": "https://api.whatsapp.com/send?phone=919137871700"
+                    "answer": "You can reach us at:",
+                    "details": "Phone: +91 9137871700\nEmail: contact@hopebites.org"
                 }
-                # Add more responses as needed
             }
             
             response = responses.get(user_message, {
-                "answer": "Sorry, I didn't understand. Please try:",
-                "follow_up": ["Donate food", "Get assistance", "Contact support"]
+                "answer": "Sorry, I didn't understand. Try asking about:",
+                "options": ["Donations", "Assistance", "Volunteering"]
             })
             
             return JsonResponse(response)
             
         except Exception as e:
-            return JsonResponse({"error": str(e)}, status=400)
+            logger.error(f"WhatsApp webhook error: {str(e)}")
+            return JsonResponse({"error": "Invalid request"}, status=400)
     
-    return JsonResponse({"error": "Invalid method"}, status=405)
+    return JsonResponse({"error": "Method not allowed"}, status=405)
 
 def contact_success(request):
     return render(request, 'contact.html', {
-        'title': 'Message Received',
-        'message': 'Thank you for contacting us! We will respond shortly.'
+        'title': 'Thank You',
+        'message': 'We have received your message and will respond soon.'
     })
-

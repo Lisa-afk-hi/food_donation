@@ -29,7 +29,7 @@ html, body {
     background-color: var(--accent-green);
     color: var(--text-light);
     padding: 10px 5%;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 1000;
     display: flex;

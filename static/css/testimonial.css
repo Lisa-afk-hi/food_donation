@@ -44,6 +44,7 @@ button {
     filter: grayscale(60%);
     display: flex;
     align-items: center;
+    margin-top: 70px;
 }   
 h1 {
     color: #ea9c0b;

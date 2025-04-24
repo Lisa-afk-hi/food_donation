@@ -332,6 +332,7 @@ form button:hover {
     flex-direction: column;
     align-items: flex-start;
     padding: 60px;
+    margin-top: 70px;
   }
   
   .donate-header > h1 {

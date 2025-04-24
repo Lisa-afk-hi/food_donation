@@ -287,3 +287,117 @@ def contact_view(request):
         return redirect('contact_success')
     
     return render(request, 'contact.html')
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
+def get_response_with_answer(user_response):
+    question_flow = {
+        "start": {
+            "answer": "Welcome to HopeBites! How can I help you today?",
+            "follow_up": [
+                "What does HopeBites do?",
+                "How can I donate food?",
+                "How can I get involved as a volunteer?"
+            ]
+        },
+        "what does hopebites do?": {
+            "answer": "HopeBites rescues surplus food and redistributes it to communities in need, reducing waste and fighting hunger. We partner with donors, volunteers, and NGOs to make food accessible to all.",
+            "follow_up": [
+                "How does HopeBites collect food?",
+                "Who benefits from the food donations?",
+                "Is HopeBites a nonprofit organization?"
+            ]
+        },
+        "how can i donate food?": {
+            "answer": "You can donate packaged or bulk surplus food by scheduling a pickup or dropping it at our collection centers. We accept perishable and non-perishable items.",
+            "follow_up": [
+                "What kind of food can I donate?",
+                "Do I need to package the food myself?",
+                "Can I schedule a pickup?"
+            ]
+        },
+        "how can i get involved as a volunteer?": {
+            "answer": "Volunteers help with food collection, distribution, and awareness campaigns. No prior experience is needed—just sign up on our website!",
+            "follow_up": [
+                "What kind of volunteering roles are available?",
+                "Do I need any prior experience to volunteer?",
+                "How do I sign up to volunteer?"
+            ]
+        },
+        "what kind of food can i donate?": {
+            "answer": "We accept non-perishables, fresh produce, and packaged meals. Leftovers from events are welcome if properly stored.",
+            "follow_up": [
+                "Can I donate leftover food from events?",
+                "Is there a minimum quantity for donations?",
+                "Can restaurants or cafes donate?"
+            ]
+        },
+        "can i schedule a pickup?": {
+            "answer": "Yes! Request a pickup via our website. We serve select areas and may require 24-48 hours' notice.",
+            "follow_up": [
+                "What areas does HopeBites operate in?",
+                "How far in advance should I request a pickup?",
+                "Is there a fee for pickup?"
+            ]
+        },
+        "how does hopebites collect food?": {
+            "answer": "We collect food through donor pickups, business partnerships, and community drop-offs. Our team ensures safe and hygienic handling.",
+            "follow_up": [
+                "Does HopeBites have its own transport?",
+                "Can I drop off food myself?",
+                "Do they partner with local businesses?"
+            ]
+        },
+        "who benefits from the food donations?": {
+            "answer": "Food goes to underserved communities, shelters, and NGOs. We prioritize marginalized groups and disaster-affected areas.",
+            "follow_up": [
+                "Are donations given directly to individuals?",
+                "Does HopeBites work with shelters or NGOs?",
+                "Can I suggest a community in need?"
+            ]
+        },
+        "is hopebites a nonprofit organization?": {
+            "answer": "Yes, we're a registered nonprofit. Donations are tax-deductible, and we rely on grants and public support.",
+            "follow_up": [
+                "Is my donation tax-deductible?",
+                "Where can I find your registration details?",
+                "How is HopeBites funded?"
+            ]
+        },
+        "contact hopebites": {
+            "answer": "You can reach us directly on WhatsApp for immediate assistance:",
+            "action": "https://web.whatsapp.com/"
+        }
+    }
+
+    default_response = {
+        "answer": "Sorry, I didn't understand that.",
+        "follow_up": [
+            "Please choose from the available options",
+            "Or type 'Contact HopeBites' to chat directly"
+        ]
+    }
+
+    normalized_input = user_response.strip().lower()
+    greetings = ["hi", "hello", "hey", ""]
+
+    if normalized_input in greetings:
+        return question_flow["start"]
+    
+    return question_flow.get(normalized_input, default_response)
+
+@csrf_exempt
+def whatsapp_webhook(request):
+    if request.method == "POST":
+        try:
+            incoming_data = json.loads(request.body.decode("utf-8"))
+            user_message = incoming_data.get("Body", "").strip()
+        except (json.JSONDecodeError, AttributeError):
+            return JsonResponse({"error": "Invalid request format"}, status=400)
+
+        response_data = get_response_with_answer(user_message)
+        return JsonResponse(response_data)
+
+    return JsonResponse({"error": "Invalid request method"}, status=400)

@@ -411,7 +411,7 @@ form button:hover {
     margin-bottom: 5%;
     text-align: center;
     margin-left: 25%;
-}
+} 
 #type2>img,#type1>img,#type3>img
 {
     width: 300px;
@@ -462,13 +462,13 @@ form button:hover {
     /* padding-left: 5%;
     padding-right: 5%; */
 }
-.left-container
+.donate-left-container
 {
     width: 25%;
     margin-left: 5%;
     font-size: 30px;
 }
-.right-container
+.donate-right-container
 {
     width: 60%;
     text-align: center;

@@ -11,6 +11,8 @@ urlpatterns = [
     path('navbar/', views.navbar, name='navbar'),
     path('join/', views.join, name='join'),
     path('contact/', views.contact, name='contact'),
+    path('contact/success/', views.contact_success, name='contact_success'),
+    path('whatsapp-webhook/', views.whatsapp_webhook, name='whatsapp_webhook'),
     path('footer/', views.footer, name='footer'),
     path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('login/', LoginView.as_view(template_name='login.html'), name='login'),  # This is the important one

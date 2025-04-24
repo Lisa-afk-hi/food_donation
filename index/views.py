@@ -104,74 +104,74 @@ def navbar(request):
 def footer(request):
     return render(request, 'footer.html')
 
-def contact(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        purpose = request.POST.get('purpose')
-        contact_method = request.POST.get('contact_method')
-        subject = request.POST.get('subject')
-        message = request.POST.get('message')
-        donation_type = request.POST.get('donation_type', '')
-        needs_description = request.POST.get('needs_description', '')
+# def contact(request):
+#     if request.method == 'POST':
+#         name = request.POST.get('name')
+#         email = request.POST.get('email')
+#         phone = request.POST.get('phone')
+#         purpose = request.POST.get('purpose')
+#         contact_method = request.POST.get('contact_method')
+#         subject = request.POST.get('subject')
+#         message = request.POST.get('message')
+#         donation_type = request.POST.get('donation_type', '')
+#         needs_description = request.POST.get('needs_description', '')
 
-        # Validate input fields
-        errors = {}
+#         # Validate input fields
+#         errors = {}
 
-        if any(char.isdigit() for char in name):
-            errors['name_error'] = 'Name field cannot contain numbers.'
+#         if any(char.isdigit() for char in name):
+#             errors['name_error'] = 'Name field cannot contain numbers.'
 
-        try:
-            validate_email(email)
-        except ValidationError:
-            errors['email_error'] = 'Invalid email address.'
+#         try:
+#             validate_email(email)
+#         except ValidationError:
+#             errors['email_error'] = 'Invalid email address.'
 
-        if not subject or len(subject) < 5:
-            errors['subject_error'] = 'Subject must contain at least 5 characters.'
+#         if not subject or len(subject) < 5:
+#             errors['subject_error'] = 'Subject must contain at least 5 characters.'
 
-        if not phone.isdigit():
-            errors['phone_error'] = 'Phone number must contain only digits.'
+#         if not phone.isdigit():
+#             errors['phone_error'] = 'Phone number must contain only digits.'
 
-        if len(message) < 10:
-            errors['message_error'] = 'Message field must contain at least 10 characters.'
+#         if len(message) < 10:
+#             errors['message_error'] = 'Message field must contain at least 10 characters.'
 
-        # Additional validation for conditional fields
-        if purpose == 'donate' and not donation_type:
-            errors['donation_type_error'] = 'Please specify donation type.'
+#         # Additional validation for conditional fields
+#         if purpose == 'donate' and not donation_type:
+#             errors['donation_type_error'] = 'Please specify donation type.'
             
-        if purpose == 'assistance' and not needs_description:
-            errors['needs_description_error'] = 'Please describe your needs.'
+#         if purpose == 'assistance' and not needs_description:
+#             errors['needs_description_error'] = 'Please describe your needs.'
 
-        if not contact_method:
-            errors['contact_method_error'] = 'Please select preferred contact method.'
+#         if not contact_method:
+#             errors['contact_method_error'] = 'Please select preferred contact method.'
 
-        if errors:
-            for key, value in errors.items():
-                messages.error(request, value)
-            return render(request, 'contact.html', {
-                'errors': errors,
-                'form_data': request.POST
-            })
+#         if errors:
+#             for key, value in errors.items():
+#                 messages.error(request, value)
+#             return render(request, 'contact.html', {
+#                 'errors': errors,
+#                 'form_data': request.POST
+#             })
 
-        # Save data to the Contact model
-        Contact.objects.create(
-            name=name,
-            email=email,
-            phone=phone,
-            purpose=purpose,
-            contact_method=contact_method,
-            donation_type=donation_type,
-            needs_description=needs_description,
-            subject=subject,
-            message=message
-        )
-        messages.success(request, 'Your message has been sent successfully!')
-        return render(request, 'contact.html', {
-            'success_message': 'Your message has been sent successfully!'
-        })
+#         # Save data to the Contact model
+#         Contact.objects.create(
+#             name=name,
+#             email=email,
+#             phone=phone,
+#             purpose=purpose,
+#             contact_method=contact_method,
+#             donation_type=donation_type,
+#             needs_description=needs_description,
+#             subject=subject,
+#             message=message
+#         )
+#         messages.success(request, 'Your message has been sent successfully!')
+#         return render(request, 'contact.html', {
+#             'success_message': 'Your message has been sent successfully!'
+#         })
 
-    return render(request, 'contact.html')
+#     return render(request, 'contact.html')
 
 def join(request):
     if request.method == 'POST':
@@ -246,47 +246,47 @@ def custom_logout(request):
     messages.success(request, "You've been logged out successfully.")
     return redirect('index')
 
-def contact_view(request):
-    if request.method == 'POST':
-        # Process your form data
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        contact_method = request.POST.get('contact_method')
-        message = request.POST.get('message')
+# def contact_view(request):
+#     if request.method == 'POST':
+#         # Process your form data
+#         name = request.POST.get('name')
+#         email = request.POST.get('email')
+#         phone = request.POST.get('phone')
+#         contact_method = request.POST.get('contact_method')
+#         message = request.POST.get('message')
         
-        # Save to database if needed
+#         # Save to database if needed
         
-        # Automated response based on contact method
-        if contact_method == 'email':
-            # Send email
-            send_mail(
-                'Thank you for contacting HopeBites',
-                f'Dear {name},\n\nThank you for reaching out to us. We have received your message and will get back to you soon.\n\nYour message: {message}\n\nBest regards,\nThe HopeBites Team',
-                settings.DEFAULT_FROM_EMAIL,
-                [email],
-                fail_silently=False,
-            )
-        elif contact_method == 'whatsapp':
-            try:
-                # Send WhatsApp message (using Twilio API example)
-                account_sid = settings.TWILIO_ACCOUNT_SID
-                auth_token = settings.TWILIO_AUTH_TOKEN
-                client = Client(account_sid, auth_token)
+#         # Automated response based on contact method
+#         if contact_method == 'email':
+#             # Send email
+#             send_mail(
+#                 'Thank you for contacting HopeBites',
+#                 f'Dear {name},\n\nThank you for reaching out to us. We have received your message and will get back to you soon.\n\nYour message: {message}\n\nBest regards,\nThe HopeBites Team',
+#                 settings.DEFAULT_FROM_EMAIL,
+#                 [email],
+#                 fail_silently=False,
+#             )
+#         elif contact_method == 'whatsapp':
+#             try:
+#                 # Send WhatsApp message (using Twilio API example)
+#                 account_sid = settings.TWILIO_ACCOUNT_SID
+#                 auth_token = settings.TWILIO_AUTH_TOKEN
+#                 client = Client(account_sid, auth_token)
                 
-                client.messages.create(
-                    body=f'Thank you for contacting HopeBites, {name}! We have received your message and will get back to you soon.',
-                    from_='whatsapp:+14155238886',  # Your Twilio WhatsApp number
-                    to=f'whatsapp:{phone}'
-                )
-            except Exception as e:
-                messages.error(request, f"Failed to send WhatsApp message: {e}")
-                return redirect('contact')
+#                 client.messages.create(
+#                     body=f'Thank you for contacting HopeBites, {name}! We have received your message and will get back to you soon.',
+#                     from_='whatsapp:+14155238886',  # Your Twilio WhatsApp number
+#                     to=f'whatsapp:{phone}'
+#                 )
+#             except Exception as e:
+#                 messages.error(request, f"Failed to send WhatsApp message: {e}")
+#                 return redirect('contact')
         
-        # Redirect or return response
-        return redirect('contact_success')
+#         # Redirect or return response
+#         return redirect('contact_success')
     
-    return render(request, 'contact.html')
+#     return render(request, 'contact.html')
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -401,3 +401,131 @@ def whatsapp_webhook(request):
         return JsonResponse(response_data)
 
     return JsonResponse({"error": "Invalid request method"}, status=400)
+
+
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+from django.conf import settings
+from django.core.mail import send_mail
+from .models import Contact
+import json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import logging
+import pywhatkit
+
+def contact(request):
+    if request.method == 'POST':
+        try:
+            # Extract and validate data
+            data = {
+                'name': request.POST.get('name', '').strip(),
+                'email': request.POST.get('email', '').strip(),
+                'phone': request.POST.get('phone', '').strip(),
+                'purpose': request.POST.get('purpose'),
+                'contact_method': request.POST.get('contact_method'),
+                'message': request.POST.get('message', '').strip()
+            }
+
+            # Validation
+            errors = {}
+            if not data['name'] or any(char.isdigit() for char in data['name']):
+                errors['name'] = 'Valid name required'
+            
+            try:
+                validate_email(data['email'])
+            except ValidationError:
+                errors['email'] = 'Valid email required'
+                
+            if not data['phone'].isdigit() or len(data['phone']) < 10:
+                errors['phone'] = 'Valid phone number required'
+                
+            if not data['purpose']:
+                errors['purpose'] = 'Purpose required'
+                
+            if not data['contact_method']:
+                errors['contact_method'] = 'Contact method required'
+                
+            if len(data['message']) < 10:
+                errors['message'] = 'Message too short'
+
+            if errors:
+                for error in errors.values():
+                    messages.error(request, error)
+                return render(request, 'contact.html', {'errors': errors, 'form_data': request.POST})
+
+            # Save to database
+            Contact.objects.create(**data)
+            
+            # Send confirmation based on method
+            if data['contact_method'] == 'email':
+                send_mail(
+                    'Thank you for contacting HopeBites',
+                    f"Hi {data['name']},\n\nWe've received your message and will respond shortly.\n\nYour message: {data['message']}\n\nBest,\nHopeBites Team",
+                    settings.DEFAULT_FROM_EMAIL,
+                    [data['email']],
+                    fail_silently=False
+                )
+            elif data['contact_method'] == 'phone' and hasattr(settings, 'TWILIO_ACCOUNT_SID'):
+                try:
+                    client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
+                    client.messages.create(
+                        body=f"Hi {data['name']}, we've received your message and will respond shortly.",
+                        from_='whatsapp:+14155238886',  # Your Twilio number
+                        to=f'whatsapp:+{data["phone"]}'
+                    )
+                except Exception as e:
+                    messages.warning(request, "Message sent but WhatsApp confirmation failed")
+
+            messages.success(request, 'Thank you for contacting us!')
+            return redirect('contact_success')
+
+        except Exception as e:
+            messages.error(request, f'Error: {str(e)}')
+            return render(request, 'contact.html')
+
+    return render(request, 'contact.html')
+
+@csrf_exempt
+def whatsapp_webhook(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+            user_message = data.get("Body", "").strip().lower()
+            
+            responses = {
+                "start": {
+                    "answer": "Welcome to HopeBites! How can we help?",
+                    "follow_up": ["Donate food", "Get assistance", "Volunteer"]
+                },
+                "donate": {
+                    "answer": "We accept food donations at our centers. Visit our website for locations.",
+                    "action": "https://hopebites.org/donate"
+                },
+                "contact": {
+                    "answer": "Chat with us directly:",
+                    "action": "https://api.whatsapp.com/send?phone=919137871700"
+                }
+                # Add more responses as needed
+            }
+            
+            response = responses.get(user_message, {
+                "answer": "Sorry, I didn't understand. Please try:",
+                "follow_up": ["Donate food", "Get assistance", "Contact support"]
+            })
+            
+            return JsonResponse(response)
+            
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=400)
+    
+    return JsonResponse({"error": "Invalid method"}, status=405)
+
+def contact_success(request):
+    return render(request, 'contact.html', {
+        'title': 'Message Received',
+        'message': 'Thank you for contacting us! We will respond shortly.'
+    })
+

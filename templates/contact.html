@@ -7,7 +7,6 @@
     <title>Contact Us - HopeBites</title>
     <link rel="stylesheet" href="{% static 'css/contact.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
@@ -16,15 +15,14 @@
     {% include 'navbar.html' %}
     {% block content %}
 
-        <header class="header"> <h1>Contact Us</h1> </header>
+    <header class="header"><h1>Contact Us</h1></header>
 
-        <div id="container">
-            <h2>Connect with Us</h2>
-            <div id="join">
-                <p>We’d love to hear from you! Whether you're looking to support our mission or in need of assistance, we’re here to help. Please fill out the form below, and a member of our team will reach out to you as soon as possible. Together, we can make a difference!</p>
-                <p>For immediate assistance, please call us at <strong>+91 1234567890</strong></p>    
-        
-            <!-- Display error messages -->
+    <div id="container">
+        <h2>Connect with Us</h2>
+        <div id="join">
+            <p>We'd love to hear from you! Please fill out the form below.</p>
+            <p>For immediate assistance: <strong>+91 9137871700</strong></p>
+
             {% if messages %}
                 <ul class="messages">
                     {% for message in messages %}
@@ -32,8 +30,7 @@
                     {% endfor %}
                 </ul>
             {% endif %}
-        
-            <!-- Display form errors -->
+
             {% if errors %}
                 <ul class="error-messages">
                     {% for key, error in errors.items %}
@@ -41,64 +38,59 @@
                     {% endfor %}
                 </ul>
             {% endif %}
-        
+
             <div id="form">
-                <form action="{% url 'contact' %}" method="POST">
+                <form id="contactForm" action="{% url 'contact' %}" method="POST">
                     {% csrf_token %}
-                    <input type="text" id="name" name="name" placeholder="Name" value="{{ form_data.name|default:'' }}" required>
-                    <input type="email" id="email" name="email" placeholder="Email address" value="{{ form_data.email|default:'' }}" required>   
-                    <input type="text" id="phone" name="phone" placeholder="Phone no" value="{{ form_data.phone|default:'' }}" required>
+                    <input type="text" id="name" name="name" placeholder="Name" required>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <input type="tel" id="phone" name="phone" placeholder="Phone (with country code)" required>
                     
-                    <!-- Purpose of Inquiry -->
                     <div class="form-group">
-                        <label for="purpose">Purpose of Inquiry:</label>
+                        <label>Purpose:</label>
                         <select id="purpose" name="purpose" required>
-                            <option value="">-- Select Purpose --</option>
-                            <option value="donate" {% if form_data.purpose == 'donate' %}selected{% endif %}>I want to donate</option>
-                            <option value="assistance" {% if form_data.purpose == 'assistance' %}selected{% endif %}>I need assistance</option>
-                            <option value="general" {% if form_data.purpose == 'general' %}selected{% endif %}>I have a general inquiry</option>
+                            <option value="">-- Select --</option>
+                            <option value="donate">Donate</option>
+                            <option value="assistance">Need Assistance</option>
+                            <option value="general">General Inquiry</option>
                         </select>
                     </div>
-                    
-                    <!-- Donation Type (hidden by default) -->
-                    <div id="donation-type" class="conditional-field" style="display: none;">
-                        <label for="donation_type">Donation Type:</label>
-                        <select id="donation_type" name="donation_type">
-                            <option value="">-- Select Donation Type --</option>
-                            <option value="food" {% if form_data.donation_type == 'food' %}selected{% endif %}>Food</option>
-                            <option value="funds" {% if form_data.donation_type == 'funds' %}selected{% endif %}>Funds</option>
-                            <option value="supplies" {% if form_data.donation_type == 'supplies' %}selected{% endif %}>Other Supplies</option>
-                        </select>
-                    </div>
-                    
-                    <!-- Assistance Needs (hidden by default) -->
-                    <div id="assistance-needs" class="conditional-field" style="display: none;">
-                        {% comment %} <label for="needs_description">Describe Your Needs:</label> {% endcomment %}
-                        <textarea id="needs_description" name="needs_description" placeholder="Describe Your Needs:">{{ form_data.needs_description|default:'' }}</textarea>
-                    </div>
-                    
-                    <!-- Preferred Contact Method -->
+
                     <div class="form-group">
-                        <label>Preferred Contact Method:</label>
+                        <label>Contact Method:</label>
                         <div>
-                            <input type="radio" id="contact_email" name="contact_method" value="email" {% if form_data.contact_method == 'email' %}checked{% endif %} required>
+                            <input type="radio" id="contact_email" name="contact_method" value="email" required>
                             <label for="contact_email">Email</label>
-                            
-                            <input type="radio" id="contact_phone" name="contact_method" value="phone" {% if form_data.contact_method == 'phone' %}checked{% endif %} required>
-                            <label for="contact_phone">Phone</label>
+                            <input type="radio" id="contact_phone" name="contact_method" value="phone" required>
+                            <label for="contact_phone">WhatsApp</label>
                         </div>
                     </div>
-                    
-                    <input type="text" id="subject" name="subject" placeholder="Subject" value="{{ form_data.subject|default:'' }}" required>
-                    <textarea id="message" name="message" placeholder="Message" required>{{ form_data.message|default:'' }}</textarea>
+
+                    <textarea id="message" name="message" placeholder="Your message" required></textarea>
                     <button type="submit">Submit</button>
-                </form> 
+                </form>
             </div>
         </div>
     </div>
-    {% endblock content %}
-    <script src="{% static 'js/join.js' %}"></script>
 
+    <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        const contactMethod = document.querySelector('input[name="contact_method"]:checked').value;
+        const phone = document.getElementById('phone').value;
+        
+        if (contactMethod === 'phone') {
+            // Format phone number (remove non-digits)
+            const cleanPhone = phone.replace(/\D/g,'');
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${cleanPhone}&text=Thank%20you%20for%20contacting%20HopeBites!%20We've%20received%20your%20message%20and%20will%20respond%20shortly.`;
+            window.open(whatsappUrl, '_blank');
+        }
+        
+        // Form will continue to submit normally
+        return true;
+    });
+    </script>
+
+    {% endblock content %}
     {% include 'footer.html' %}
 </body>
 </html>

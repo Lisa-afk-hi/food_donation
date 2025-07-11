@@ -1,1 +1,0 @@
-web: gunicorn fooddonation.wsgi:application --workers=2

@@ -3,12 +3,10 @@ from .models import Contact, Join
 from django.contrib import messages
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.core.mail import send_mail
 from django.conf import settings
-from twilio.rest import Client  # Added missing import for Twilio API
 
 def index(request):
     return render(request, 'index.html')
@@ -414,7 +412,6 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Contact
 import json
 import logging
-import pywhatkit
 
 logger = logging.getLogger(__name__)
 

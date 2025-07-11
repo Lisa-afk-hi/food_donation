@@ -412,6 +412,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Contact
 import json
 import logging
+import pywhatkit
 
 logger = logging.getLogger(__name__)
 
